@@ -9,14 +9,18 @@ client.on('ready', () => {
 })
 
 // ユーザ毎の入室音を取得
-client.on('voiceChannelJoin', (member, newChannel) => {
-  const voiceChannel = newChannel.guild.channels.find(
-    (channel) => channel.type === 0
-  )
-  console.log(voiceChannel)
-  voiceChannel.join().then((connection) => {
-    connection.playFile('./voices/line-girl1-yoho1.mp3')
-  })
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+  console.log(oldMember)
+  console.log(newMember)
+  if (
+    oldMember.voiceChannelID !== newMember.voiceChannelID &&
+    newMember.voiceChannelID !== null
+  ) {
+    const voiceChannel = client.channels.get(newMember.voiceChannelID)
+    voiceChannel.join().then((connection) => {
+      connection.playFile('./voices/line-girl1-yoho1.mp3')
+    })
+  }
 })
 
 client.login(token)
