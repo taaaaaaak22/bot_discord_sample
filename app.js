@@ -1,4 +1,3 @@
-const fs = require('fs')
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
@@ -11,6 +10,8 @@ client.on('ready', () => {
 
 // ユーザ毎の入室音を取得
 client.on('voiceStateUpdate', (oldMember, newMember) => {
+  console.log(oldMember)
+  console.log(newMember)
   if (
     oldMember.voiceChannelID !== newMember.voiceChannelID &&
     newMember.voiceChannelID !== null
