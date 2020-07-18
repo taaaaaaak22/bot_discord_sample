@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 
 // @TODO 環境変数から取得
-const token = 'NzM0MDM0Nzc0MDk5NzU1MTAw.XxL1mA.VqPhSDqchJbnixRNF4HsgcIGL6s'
+const token = process.env.DISCORD_TOKEN
 
 const sleep = (time = 200) => {
   return new Promise((resolve, reject) => {
