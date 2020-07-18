@@ -1,1 +1,1 @@
-discordbot: node app.js
+discordbot: npm start
