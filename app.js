@@ -24,7 +24,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   ) {
     const voiceChannel = client.channels.cache.get(newMember.channelID)
     voiceChannel.join().then(async (connection) => {
-      await sleep(1000)
+      await sleep(500)
       connection.play('./voices/line-girl1-yoho1.mp3')
     })
   }
