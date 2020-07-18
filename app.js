@@ -10,8 +10,6 @@ client.on('ready', () => {
 
 // ユーザ毎の入室音を取得
 client.on('voiceStateUpdate', (oldMember, newMember) => {
-  console.log(oldMember)
-  console.log(newMember)
   if (
     oldMember.channelID !== newMember.channelID &&
     newMember.channelID !== null
