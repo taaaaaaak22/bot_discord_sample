@@ -10,15 +10,15 @@ client.on('ready', () => {
 
 // ユーザ毎の入室音を取得
 client.on('voiceStateUpdate', (oldMember, newMember) => {
+  console.log(oldMember)
+  console.log(newMember)
   if (
     oldMember.channelID !== newMember.channelID &&
     newMember.channelID !== null
   ) {
     const voiceChannel = client.channels.cache.get(newMember.channelID)
     voiceChannel.join().then((connection) => {
-      connection.play(
-        require('path').join(__dirname, './voices/line-girl1-yoho1.mp3')
-      )
+      connection.play('./voices/line-girl1-yoho1.mp3')
     })
   }
 })
