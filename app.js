@@ -10,8 +10,6 @@ client.on('ready', () => {
 })
 
 // ユーザ毎の入室音を取得
-const voice = fs.readFileSync('./voices/line-girl1-yoho1.mp3')
-
 client.on('voiceStateUpdate', (oldMember, newMember) => {
   if (
     oldMember.voiceChannelID !== newMember.voiceChannelID &&
@@ -19,7 +17,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   ) {
     const voiceChannel = client.channels.get(newMember.voiceChannelID)
     voiceChannel.join().then((connection) => {
-      connection.playFile(voice)
+      connection.playFile('./voices/line-girl1-yoho1.mp3')
     })
   }
 })
