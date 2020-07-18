@@ -16,7 +16,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     oldMember.channelID !== newMember.channelID &&
     newMember.channelID !== null
   ) {
-    const voiceChannel = client.channels.get(newMember.channelID)
+    const voiceChannel = client.channels.cache.get(newMember.channelID)
     voiceChannel.join().then((connection) => {
       connection.playFile('./voices/line-girl1-yoho1.mp3')
     })
