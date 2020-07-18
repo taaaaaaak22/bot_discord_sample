@@ -13,6 +13,7 @@ client.on('voiceChannelJoin', (member, newChannel) => {
   const voiceChannel = newChannel.guild.channels.find(
     (channel) => channel.type === 0
   )
+  console.log(voiceChannel)
   voiceChannel.join().then((connection) => {
     connection.playFile('./voices/line-girl1-yoho1.mp3')
   })
