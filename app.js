@@ -18,7 +18,9 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   ) {
     const voiceChannel = client.channels.cache.get(newMember.channelID)
     voiceChannel.join().then((connection) => {
-      connection.playFile('./voices/line-girl1-yoho1.mp3')
+      connection.playFile(
+        require('path').join(__dirname, './voices/line-girl1-yoho1.mp3')
+      )
     })
   }
 })
