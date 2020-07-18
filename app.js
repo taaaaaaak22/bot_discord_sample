@@ -1,3 +1,4 @@
+const fs = require('fs')
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
@@ -8,21 +9,19 @@ client.on('ready', () => {
   console.log('[event] ready')
 })
 
-client.on('message', (message) => {
-  if (message.author.bot) {
-    return
+// ユーザ毎の入室音を取得
+const voice = fs.readFileSync('./voices/line-girl1-yoho1.mp3')
+
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+  if (
+    oldMember.voiceChannelID !== newMember.voiceChannelID &&
+    newMember.voiceChannelID !== null
+  ) {
+    const voiceChannel = client.channels.get(newMember.voiceChannelID)
+    voiceChannel.join().then((connection) => {
+      connection.playFile(voice)
+    })
   }
-  const content = message.content
-  const channel = message.channel
-  const username = message.author.username
-  message
-    .reply(content)
-    .then((msg) =>
-      console.log(
-        `Sent message: ${msg}, channel: ${channel}, username: ${username}`
-      )
-    )
-    .catch(console.error)
 })
 
 client.login(token)
