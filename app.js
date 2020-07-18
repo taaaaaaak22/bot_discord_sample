@@ -4,6 +4,14 @@ const client = new Discord.Client()
 // @TODO 環境変数から取得
 const token = 'NzM0MDM0Nzc0MDk5NzU1MTAw.XxL1mA.VqPhSDqchJbnixRNF4HsgcIGL6s'
 
+const sleep = (time = 500) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve()
+    }, time)
+  })
+}
+
 client.on('ready', () => {
   console.log('[event] ready')
 })
@@ -15,7 +23,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     newMember.channelID !== null
   ) {
     const voiceChannel = client.channels.cache.get(newMember.channelID)
-    voiceChannel.join().then((connection) => {
+    voiceChannel.join().then(async (connection) => {
+      await sleep()
       connection.play('./voices/line-girl1-yoho1.mp3')
     })
   }
